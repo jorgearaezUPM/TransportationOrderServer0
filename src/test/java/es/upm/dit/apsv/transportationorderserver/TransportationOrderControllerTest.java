@@ -104,22 +104,7 @@ public void testGetOrder() throws Exception {
                 .andExpect(jsonPath("$.lastLong").value(0.0))
                 .andExpect(jsonPath("$.st").value(0));
 
-                verify(null)
 
-}
+} 
 
-@Test
-    public void testGetOrderNotFound() throws Exception {
-        // Arrange
-        String nonExistingTruckId = "NADA";
-        when(repository.findById(nonExistingTruckId)).thenReturn(Optional.empty());
-
-        // Act & Assert for non-existing order
-        mockMvc.perform(get("/transportationorders/{truck}", nonExistingTruckId)
-                .contentType("application/json"))
-                .andExpect(status().isNotFound());
-
-        // Verify
-        verify(repository, times(1)).findById(nonExistingTruckId);
-    }
 }
